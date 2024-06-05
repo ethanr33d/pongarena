@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pong-arena", "pong-arena.csproj", "{C03BB22D-0994-48A5-A391-0332F9342160}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pong-arena", "pong-arena.csproj", "{0CBA5660-74D1-4C97-8B05-C7F9C1767976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C03BB22D-0994-48A5-A391-0332F9342160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C03BB22D-0994-48A5-A391-0332F9342160}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C03BB22D-0994-48A5-A391-0332F9342160}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{C03BB22D-0994-48A5-A391-0332F9342160}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{C03BB22D-0994-48A5-A391-0332F9342160}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{C03BB22D-0994-48A5-A391-0332F9342160}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{0CBA5660-74D1-4C97-8B05-C7F9C1767976}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
