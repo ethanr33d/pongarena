@@ -2,5 +2,5 @@
 .godot/
 .vscode/
 .vs
-*.csproj*
+*.csproj.user
 launchSettings.json
