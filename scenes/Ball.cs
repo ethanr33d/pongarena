@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using Godot;
-using System;
 
 public partial class Ball : Area2D
 {
