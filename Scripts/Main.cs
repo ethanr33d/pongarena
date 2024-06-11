@@ -18,7 +18,7 @@ public partial class Main : Node
     public override void _Ready()
     {
         //var player = GetNode<Player>("Player");
-        //var cpu = GetNode<CPU>("CPU");
+        var cpu = GetNode<CPU>("CPU");
         var ball = GetNode<Ball>("Ball");
 
         var playerPosition = GetNode<Marker2D>("PlayerMarker");
@@ -26,7 +26,7 @@ public partial class Main : Node
         var ballPosition = GetNode<Marker2D>("BallMarker");
 
         //player.Start(playerPosition.Position);
-        //cpu.Start(cpuPosition.Position);
+        cpu.Start(cpuPosition.Position);
         ball.Start(ballPosition.Position);
     }
 

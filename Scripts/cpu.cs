@@ -9,12 +9,15 @@ public partial class CPU : StaticBody2D
 	private float ballPos;
 	private float ballDist;
 	
+	public void Start(Vector2 pos)
+	{
+		Position = pos;
+	}
 	public override void _Ready()
 	{
 		winHeight = GetViewportRect().Size.Y;
 		pHeight = GetNode<ColorRect>("ColorRect").Size.Y;
 	}
-
 
 	public override void _Process(double delta)
 	{
