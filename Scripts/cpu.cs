@@ -3,11 +3,12 @@ using System;
 
 public partial class CPU : StaticBody2D
 {
+	public float PADDLE_SPEED = 400f;
 	private float winHeight;
 	private float pHeight;
 	private float ballPos;
 	private float ballDist;
-
+	
 	public override void _Ready()
 	{
 		winHeight = GetViewportRect().Size.Y;
@@ -19,7 +20,7 @@ public partial class CPU : StaticBody2D
 	{
 		ballPos = GetNode<Area2D>("../Ball").Position.Y;
 		ballDist = ballPos - Position.Y;
-		float moveBy = 400 * (float)delta;
+		float moveBy = PADDLE_SPEED * (float)delta;
 
 		if (ballDist < Math.Abs(moveBy))
 		{
