@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://tjekq4aixb43"]
+[gd_scene load_steps=5 format=3 uid="uid://caykd4cv7dm55"]
 
-[ext_resource type="Texture2D" uid="uid://b2hfh4vcvgdi" path="res://assets/ball.png" id="1_2qm1b"]
-[ext_resource type="Script" path="res://scenes/Ball.cs" id="1_o73pq"]
+[ext_resource type="Script" path="res://Scripts/Ball.cs" id="1_1iuyw"]
+[ext_resource type="Texture2D" uid="uid://b2hfh4vcvgdi" path="res://assets/ball.png" id="2_7fa3d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eeik4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_2qm1b")
+"texture": ExtResource("2_7fa3d")
 }],
 "loop": true,
 "name": &"default",
@@ -18,7 +18,7 @@ animations = [{
 size = Vector2(10, 10)
 
 [node name="Ball" type="Area2D"]
-script = ExtResource("1_o73pq")
+script = ExtResource("1_1iuyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eeik4")
