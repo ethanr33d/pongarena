@@ -4,7 +4,7 @@ using System;
 public partial class Ball : Area2D
 {
     public float Speed = 400f;
-    public Vector2 direction = Vector2.Left;
+    public Vector2 direction = Vector2.Down;
 
     private Vector2 _velocity = new Vector2();
 

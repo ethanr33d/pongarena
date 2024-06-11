@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2dyh3js5qt8k"]
+
+[ext_resource type="Script" path="res://Scripts/Border.cs" id="1_mp6js"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwr6k"]
+size = Vector2(1152, 20)
+
+[node name="TopBorder" type="Area2D"]
+script = ExtResource("1_mp6js")
+
+[node name="Top" type="CollisionShape2D" parent="."]
+position = Vector2(576, -10)
+shape = SubResource("RectangleShape2D_wwr6k")
