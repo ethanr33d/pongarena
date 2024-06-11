@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bajhhluhx3jwq"]
+[gd_scene load_steps=3 format=3 uid="uid://bajhhluhx3jwq"]
 
 [ext_resource type="Script" path="res://Scripts/CPU.cs" id="1_slcps"]
-[ext_resource type="PackedScene" uid="uid://caykd4cv7dm55" path="res://scenes/ball.tscn" id="2_1f3xv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06vs4"]
 size = Vector2(20, 120)
@@ -22,5 +21,3 @@ offset_top = -60.0
 offset_right = 20.0
 offset_bottom = 60.0
 grow_vertical = 2
-
-[node name="Ball" parent="." instance=ExtResource("2_1f3xv")]

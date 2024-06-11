@@ -17,8 +17,8 @@ public partial class CPU : StaticBody2D
 
 	public override void _Process(double delta)
 	{
-		ballPos = GetNode<Area2D>("Ball").Position.Y;
-		ballDist = Math.Abs(Position.Y - ballPos);
+		ballPos = GetNode<Area2D>("../Ball").Position.Y;
+		ballDist = ballPos - Position.Y;
 		float moveBy = 400 * (float)delta;
 
 		if (ballDist < Math.Abs(moveBy))
@@ -26,7 +26,7 @@ public partial class CPU : StaticBody2D
 			Position = new Vector2(Position.X, ballPos);
 		} else
 		{
-			Position = new Vector2(Position.X, moveBy * Math.Sign(moveBy));
+			Position = new Vector2(Position.X, Position.Y + moveBy * Math.Sign(ballDist));
 		}
 
 		Position = new Vector2(Position.X, Math.Clamp(Position.Y, pHeight / 2, winHeight - pHeight / 2));
