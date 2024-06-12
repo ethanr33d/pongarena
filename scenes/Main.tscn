@@ -56,3 +56,8 @@ position = Vector2(576, 324)
 
 [node name="CPU" parent="." instance=ExtResource("3_3b535")]
 position = Vector2(-3, 323)
+
+[node name="BallTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]
