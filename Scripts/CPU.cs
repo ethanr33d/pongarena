@@ -4,14 +4,16 @@ using System;
 public partial class CPU : StaticBody2D
 {
 	public float PADDLE_SPEED = 400f;
+
 	private float winHeight;
 	private float pHeight;
 	private float ballPos;
 	private float ballDist;
+	private bool active = false;
 	
-	public void Start(Vector2 pos)
+	public void Start()
 	{
-		Position = pos;
+		active = true;
 	}
 	public override void _Ready()
 	{
@@ -21,7 +23,9 @@ public partial class CPU : StaticBody2D
 
 	public override void _Process(double delta)
 	{
-		ballPos = GetNode<Area2D>("../Ball").Position.Y;
+		if (!active) return;
+ 
+        ballPos = GetNode<Area2D>("../Ball").Position.Y;
 		ballDist = ballPos - Position.Y;
 		float moveBy = PADDLE_SPEED * (float)delta;
 

@@ -8,11 +8,6 @@ public partial class Ball : Area2D
 
     private Vector2 _velocity = new Vector2();
 
-    public override void _Ready()
-    {
-        StartMovement();
-    }
-
     public override void _Process(double delta)
     {
         Position += _velocity * (float)delta;
@@ -25,11 +20,11 @@ public partial class Ball : Area2D
         _velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * Speed;
     }
 
-    public void Start(Vector2 postion)
+    public void Start()
     {
-        Position = postion;
         Show();
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+        StartMovement();
     }
 
     public void HandleCollision()
