@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://n2y18iugwieu"]
+
+[ext_resource type="Script" path="res://Scripts/CPU.cs" id="1_slcps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06vs4"]
+size = Vector2(20, 120)
+
+[node name="CPU" type="StaticBody2D"]
+script = ExtResource("1_slcps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_06vs4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
