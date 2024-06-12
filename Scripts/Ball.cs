@@ -15,7 +15,7 @@ public partial class Ball : Area2D
 
     public override void _Process(double delta)
     {
-        Position += _velocity * (float)delta * direction;
+        Position += _velocity * (float)delta;
     }
 
     private void StartMovement()
@@ -30,6 +30,12 @@ public partial class Ball : Area2D
         Position = postion;
         Show();
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+    }
+
+    public void RandomDirection()
+    {
+        Vector2 newDirection = new Vector2();
+        //newDirection.X = 
     }
 
     public void HandleCollision()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqqku1fgxede1"]
+[gd_scene load_steps=5 format=3 uid="uid://cqqku1fgxede1"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
-[ext_resource type="PackedScene" uid="uid://tjekq4aixb43" path="res://scenes/ball.tscn" id="1_h0exj"]
+[ext_resource type="PackedScene" uid="uid://caykd4cv7dm55" path="res://scenes/Ball.tscn" id="1_h0exj"]
 [ext_resource type="PackedScene" uid="uid://d2dyh3js5qt8k" path="res://scenes/border.tscn" id="3_2gky0"]
+[ext_resource type="PackedScene" uid="uid://bajhhluhx3jwq" path="res://scenes/CPU.tscn" id="3_3b535"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f0of0")
@@ -55,3 +56,8 @@ position = Vector2(1082, 324)
 position = Vector2(576, 324)
 
 [node name="Border" parent="." instance=ExtResource("3_2gky0")]
+
+[node name="CPU" parent="." instance=ExtResource("3_3b535")]
+position = Vector2(-3, 323)
+
+[connection signal="area_entered" from="Border" to="Border" method="OnAreaEntered"]

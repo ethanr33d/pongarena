@@ -10,7 +10,11 @@ public partial class Border : Area2D
     {
         if (area is Ball ball)
         {
+            GD.Print("IT WORKED?");
+            GD.Print(ball.direction);
             ball.direction = (ball.direction + new Vector2(0, _bounceDirection)).Normalized();
+            GD.Print("MAYBE???");
+            GD.Print(ball.direction);
         }
     }
 }
