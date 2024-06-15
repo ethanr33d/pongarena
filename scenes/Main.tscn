@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
 [ext_resource type="PackedScene" uid="uid://bok8uujggee1j" path="res://scenes/Ball.tscn" id="1_h0exj"]
 [ext_resource type="PackedScene" uid="uid://n2y18iugwieu" path="res://scenes/CPU.tscn" id="3_3b535"]
-[ext_resource type="PackedScene" uid="uid://b17pyrykphydw" path="res://scenes/Player.tscn" id="4_r43cb"]
+[ext_resource type="PackedScene" uid="uid://bdjifqpejql4b" path="res://scenes/Player.tscn" id="4_r43cb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f0of0")
