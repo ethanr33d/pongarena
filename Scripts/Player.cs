@@ -32,7 +32,7 @@ public partial class Player : StaticBody2D
 			float input = Input.GetActionStrength(_down) - Input.GetActionStrength(_up);
 			Vector2 position = Position; // Required so that we can modify position.y.
 			position += new Vector2(0, input * paddleSpeed * (float)delta);
-			position.Y = Mathf.Clamp(position.Y, 0, winHeight - pHeight);
+			position.Y = Mathf.Clamp(position.Y, pHeight/2, winHeight - pHeight / 2);
 			Position = position;
 
 	}
