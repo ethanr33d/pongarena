@@ -6,7 +6,7 @@ public partial class Main : Node
     public int[] score = { 0, 0 };
     private CPU _cpu;
     private Ball _ball;
-    //private Player _player;
+    private Player _player;
 
     [Export]
     public int _paddleSpeed = 500;
@@ -17,13 +17,13 @@ public partial class Main : Node
     }
     private void OnBallTimerTimeout()
     {
-        //_player.Start();
+        _player.Start();
         _cpu.Start();
         _ball.Start();
     }
     public override void _Ready()
     {
-        //_player = GetNode<Player>("Player");
+        _player = GetNode<Player>("Player");
         _cpu = GetNode<CPU>("CPU");
         _ball = GetNode<Ball>("Ball");
         var timer = GetNode<Timer>("BallTimer");
@@ -34,7 +34,7 @@ public partial class Main : Node
 
         _cpu.Position = cpuPosition;
         _ball.Position = ballPosition;
-        //_player.Position = playerPosition;
+        _player.Position = playerPosition;
 
         timer.Start();
     }
