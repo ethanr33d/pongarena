@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
 [ext_resource type="PackedScene" uid="uid://bok8uujggee1j" path="res://scenes/Ball.tscn" id="1_h0exj"]
+[ext_resource type="PackedScene" uid="uid://cqhooyua0f4jh" path="res://scenes/border.tscn" id="3_2gky0"]
 [ext_resource type="PackedScene" uid="uid://n2y18iugwieu" path="res://scenes/CPU.tscn" id="3_3b535"]
 [ext_resource type="PackedScene" uid="uid://bdjifqpejql4b" path="res://scenes/Player.tscn" id="4_r43cb"]
-[ext_resource type="PackedScene" uid="uid://d2dyh3js5qt8k" path="res://scenes/border.tscn" id="3_2gky0"]
-[ext_resource type="PackedScene" uid="uid://c3djkg00ftfmg" path="res://scenes/Goal.tscn" id="5_xagyb"]
+[ext_resource type="PackedScene" path="res://scenes/Goal.tscn" id="5_xagyb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f0of0")
@@ -71,8 +71,6 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("4_r43cb")]
 
-[connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]
-
 [node name="Goal" parent="." instance=ExtResource("5_xagyb")]
 position = Vector2(-32, 324)
 collision_layer = 2
@@ -80,3 +78,5 @@ collision_layer = 2
 [node name="Goal2" parent="." instance=ExtResource("5_xagyb")]
 position = Vector2(1183, 324)
 collision_layer = 2
+
+[connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]

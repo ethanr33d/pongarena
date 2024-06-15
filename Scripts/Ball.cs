@@ -80,8 +80,10 @@ public partial class Ball : CharacterBody2D
 				{
 					dir = dir.Bounce(collision.GetNormal());
 				}
+
 			}
 			
+
 		}
 	}
 
