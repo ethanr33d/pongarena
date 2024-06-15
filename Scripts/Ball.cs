@@ -4,7 +4,7 @@ using System;
 public partial class Ball : Area2D
 {
     public float Speed = 400f;
-    public Vector2 direction = Vector2.Left;
+    public Vector2 direction = Vector2.Down;
 
     private Vector2 _velocity = new Vector2();
 
@@ -25,6 +25,12 @@ public partial class Ball : Area2D
         Show();
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
         StartMovement();
+    }
+
+    public void RandomDirection()
+    {
+        Vector2 newDirection = new Vector2();
+        //newDirection.X = 
     }
 
     public void HandleCollision()
