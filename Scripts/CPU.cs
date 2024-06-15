@@ -39,4 +39,9 @@ public partial class CPU : StaticBody2D
 
 		Position = new Vector2(Position.X, Math.Clamp(Position.Y, pHeight / 2, winHeight - pHeight / 2));
 	}
+
+	public float GetPHeight()
+	{
+		return pHeight;
+	}
 }

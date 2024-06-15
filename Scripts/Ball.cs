@@ -9,16 +9,20 @@ public partial class Ball : CharacterBody2D
 	public float speed;
 	public Vector2 dir;
 	public const float MaxYVector = 0.6f;
-	public StaticBody2D player;
-	public StaticBody2D cpu;
+	//public Player player;
+	public CPU cpu;
+	public float pHeight;
 
 	public override void _Ready()
 	{
 		win_size = GetViewportRect().Size;
 		GD.Randomize();
 		NewBall();
-		player = GetNode<StaticBody2D>("Player");
-		cpu = GetNode<StaticBody2D>("CPU");
+		//player = GetNode<Player>("Player");
+		cpu = GetNode<CPU>("CPU");
+		
+		
+		
 		
 	}
 
@@ -56,26 +60,29 @@ public partial class Ball : CharacterBody2D
 		if (collision!=null)
 		{
 			collider = collision.GetCollider();
-
-			// if ball hits paddle
-			if(collider == player || collider == cpu )
+			if (collider is StaticBody2D body)
 			{
-				speed += Accel;
-				dir = NewDirection(collider);
+				// if ball hits paddle
+				if (collider == player || collider == cpu)
+				{
+					//pHeight = 
+					speed += Accel;
+					dir = NewDirection(body);
 
-			}
-			else
-			{
-				dir = dir.Bounce(collision.GetNormal());
+				}
+				else
+				{
+					dir = dir.Bounce(collision.GetNormal());
+				}
 			}
 			
 		}
 	}
 
-	public Vector2 NewDirection(GodotObject collider)
+	public Vector2 NewDirection(StaticBody2D body)
 	{
 		float ballY = Position.Y;
-		float padY = collider.Position.Y;
+		float padY = body.Position.Y;
 		float distance = ballY - padY;
 
 		Vector2 newDirection = new Vector2();
@@ -89,7 +96,7 @@ public partial class Ball : CharacterBody2D
 			newDirection.X = 1;
 		}
 
-		newDirection = (distance / (collider.pHeight / 2)) * MaxYVector;
+		//newDirection = (distance / (body.pHeight / 2)) * MaxYVector;
 
 		return newDirection.Normalized();
 	}
