@@ -6,7 +6,7 @@ public partial class CPU : StaticBody2D
 	public float PADDLE_SPEED = 400f;
 
 	private float winHeight;
-	private float pHeight;
+	public float pHeight;
 	private float ballPos;
 	private float ballDist;
 	private bool active = false;
@@ -25,7 +25,7 @@ public partial class CPU : StaticBody2D
 	{
 		if (!active) return;
  
-        ballPos = GetNode<Area2D>("../Ball").Position.Y;
+        ballPos = GetNode<CharacterBody2D>("../Ball").Position.Y;
 		ballDist = ballPos - Position.Y;
 		float moveBy = PADDLE_SPEED * (float)delta;
 
@@ -38,5 +38,10 @@ public partial class CPU : StaticBody2D
 		}
 
 		Position = new Vector2(Position.X, Math.Clamp(Position.Y, pHeight / 2, winHeight - pHeight / 2));
+	}
+
+	public float GetPHeight()
+	{
+		return pHeight;
 	}
 }
