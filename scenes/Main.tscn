@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqqku1fgxede1"]
+[gd_scene load_steps=6 format=3 uid="uid://cqqku1fgxede1"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
 [ext_resource type="PackedScene" uid="uid://caykd4cv7dm55" path="res://scenes/Ball.tscn" id="1_h0exj"]
 [ext_resource type="PackedScene" uid="uid://d2dyh3js5qt8k" path="res://scenes/border.tscn" id="3_2gky0"]
 [ext_resource type="PackedScene" uid="uid://bajhhluhx3jwq" path="res://scenes/CPU.tscn" id="3_3b535"]
+[ext_resource type="PackedScene" uid="uid://c3djkg00ftfmg" path="res://scenes/Goal.tscn" id="5_xagyb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f0of0")
@@ -53,7 +54,7 @@ position = Vector2(50, 324)
 position = Vector2(1082, 324)
 
 [node name="BallMarker" type="Marker2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(581, 323)
 
 [node name="TopBorder" parent="." instance=ExtResource("3_2gky0")]
 position = Vector2(0, -60)
@@ -63,3 +64,11 @@ position = Vector2(0, 648)
 
 [node name="CPU" parent="." instance=ExtResource("3_3b535")]
 position = Vector2(-3, 323)
+
+[node name="Goal" parent="." instance=ExtResource("5_xagyb")]
+position = Vector2(-32, 324)
+collision_layer = 2
+
+[node name="Goal2" parent="." instance=ExtResource("5_xagyb")]
+position = Vector2(1183, 324)
+collision_layer = 2
