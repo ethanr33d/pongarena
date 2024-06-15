@@ -6,7 +6,7 @@ public partial class CPU : StaticBody2D
 	public float PADDLE_SPEED = 400f;
 
 	private float winHeight;
-	private float pHeight;
+	public float pHeight;
 	private float ballPos;
 	private float ballDist;
 	private bool active = false;
