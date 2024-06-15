@@ -25,7 +25,7 @@ public partial class CPU : StaticBody2D
 	{
 		if (!active) return;
  
-        ballPos = GetNode<Area2D>("../Ball").Position.Y;
+        ballPos = GetNode<CharacterBody2D>("../Ball").Position.Y;
 		ballDist = ballPos - Position.Y;
 		float moveBy = PADDLE_SPEED * (float)delta;
 
