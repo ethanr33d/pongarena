@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://1cnxqdifs8kt"]
+[gd_scene load_steps=11 format=3 uid="uid://1cnxqdifs8kt"]
 
 [ext_resource type="FontFile" uid="uid://cwd1tkm36irny" path="res://assets/pixel_font.ttf" id="1_3mot8"]
+[ext_resource type="Script" path="res://scenes/MainMenu.cs" id="1_xhplw"]
 
 [sub_resource type="Theme" id="Theme_n8rev"]
 default_font = ExtResource("1_3mot8")
@@ -30,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xhplw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -124,3 +126,5 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Animation Will Play Here"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuButton/SinglePlayerButton" to="." method="OnSinglePlayerButtonPressed"]
