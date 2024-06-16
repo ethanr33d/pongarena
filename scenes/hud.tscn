@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch7wkpqgt6kvl"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.cs" id="1_v76e5"]
+[ext_resource type="FontFile" uid="uid://cwd1tkm36irny" path="res://assets/pixel_font.ttf" id="1_wa4ou"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_v76e5")
+
+[node name="Player Score" type="Label" parent="."]
+visible = false
+offset_left = 456.0
+offset_top = 5.0
+offset_right = 506.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("1_wa4ou")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPU Score" type="Label" parent="."]
+visible = false
+offset_left = 648.0
+offset_top = 5.0
+offset_right = 698.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("1_wa4ou")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerMargin" type="MarginContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 545.0
+offset_right = 576.0
+offset_bottom = -6.0
+grow_vertical = 2
+
+[node name="PlayerCenter" type="CenterContainer" parent="PlayerMargin"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="PlayerHearts" type="HBoxContainer" parent="PlayerMargin/PlayerCenter"]
+layout_mode = 2
+
+[node name="jk" type="TextureRect" parent="PlayerMargin/PlayerCenter/PlayerHearts"]
+visible = false
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 3
+
+[node name="CPUMargin" type="MarginContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = 545.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="CPUCenter" type="CenterContainer" parent="CPUMargin"]
+layout_direction = 3
+layout_mode = 2
+
+[node name="CPUHearts" type="HBoxContainer" parent="CPUMargin/CPUCenter"]
+layout_mode = 2
