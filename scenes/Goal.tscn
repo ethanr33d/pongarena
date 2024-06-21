@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3djkg00ftfmg"]
+[gd_scene load_steps=3 format=3 uid="uid://c3djkg00ftfmg"]
+
+[ext_resource type="Script" path="res://Scripts/Goal.cs" id="1_eggjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33g14"]
 size = Vector2(61, 768)
 
 [node name="Goal" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_eggjg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_33g14")
+script = ExtResource("1_eggjg")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
