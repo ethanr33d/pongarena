@@ -4,14 +4,13 @@ using System;
 public partial class Goal : Node2D
 {
 	public int goalNumber{get; set;}
-	// [Signal]
-	// public delegate void GoalScored(int goalNumber);
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		//..this could probably be done better :)
-		goalNumber = (Name == "Goal1") ? 1 : 2;
+		goalNumber = (Name == "Goal1") ? 1 : 2; //used to know who scored eventually
 		
 	}
 
@@ -26,7 +25,7 @@ public partial class Goal : Node2D
 	{
 		if (body is Ball)
 		{
-			var ball = GetNode<Ball>("../Ball");
+			var ball = GetNode<Ball>("../Ball"); //maybe we can declare this earlier?
 			if (ball != null)
 			{
 				await ToSignal(GetTree().CreateTimer(1.5), "timeout");
