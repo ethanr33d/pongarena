@@ -8,10 +8,16 @@ public partial class GameState : Node
    
     [Export]
 	public int _playerLives = 3; // Default value, can be changed in the Godot editor
+    [Signal]
+    public delegate void GameStateReadyEventHandler();
 	
 
     private Player playerOne;
     private Player playerTwo;
+    private HUD hud;
+    private bool gameStateIsReady = false;
+    public bool roundOver { get; private set; }
+    
     public struct Player
     {
         public string Name;
@@ -23,13 +29,30 @@ public partial class GameState : Node
             Lives = lives;
         }
     }
+    
     public override void _Ready()
     {
       setPlayerLives();
+      gameStateIsReady = true;
+      CheckAndEmitReady();
       GD.Print($"Player One Lives: {playerOne.Lives}, Player Two Lives: {playerTwo.Lives}");
-      HUD hud = GetNode<HUD>("../HUD");
+      hud = GetNode<HUD>("../HUD");
+      hud.InitializeHUD();
     }
-
+    /// <summary>
+    /// Adjusts the lives of a player based on the goal scored and updates the game state accordingly.
+    /// </summary>
+    /// <param name="goalNumber">The goal number indicating which player scored.</param>
+    /// <remarks>
+    /// This method should be called whenever a goal is scored in the game.
+    /// It determines which player scored and adjusts the opponent's lives accordingly.
+    /// </remarks>
+    public void GoalScored(int goalNumber)
+    {
+        if(goalNumber == 1)AdjustLives(2, 1, false);
+        else AdjustLives(1, 1, false);
+        
+    }
 
     public void setPlayerLives(){
         playerOne.Lives = _playerLives;
@@ -51,18 +74,51 @@ public partial class GameState : Node
     }else{
         playerTwo.Lives += increase ? numLives : -numLives;
     }
-    //refresh hud
-}
+    RefreshGameState();
+    }
+    private void RefreshGameState(){
+        CheckRoundOver();
+        PrintGameState();
+        hud.RefreshHUD();
+        if(!roundOver) ResetBall(); //reset ball if round is not over
+        else Reset(); //reset game state  
+    }
+    private async void ResetBall()
+    {
+        Ball ball = GetNode<Ball>("../Ball");
+        await ToSignal(GetTree().CreateTimer(1.5), "timeout");
+        ball.NewBall();
+    }
 
-   
+    public int GetPlayerLives(int playerNumber){
+        if(playerNumber == 1) return playerOne.Lives;
+        else return playerTwo.Lives;
+    }
+   private void CheckRoundOver()
+   {
+        if(playerOne.Lives == 0 || playerTwo.Lives == 0) roundOver = true;
+        else roundOver = false;
+   }
 
     //reset game state
-    public void Reset()
+    private void Reset()
     {
         setPlayerLives();
+        ResetBall();
     }
-   
-        
-
-    // Additional methods to manage game state...
+    private void PrintGameState()
+    {
+        Console.WriteLine($"Player One Lives: {playerOne.Lives}");
+        Console.WriteLine($"Player Two Lives: {playerTwo.Lives}");
+        Console.WriteLine($"Round Status: {(roundOver ? "Over" : "Ongoing")}");
+    }
+    public void CheckAndEmitReady()
+    {
+        // Your logic to check if GameState is ready
+        if (gameStateIsReady) // IsReady() needs to be implemented based on your game's logic
+        {
+            GD.Print("Emitting GameStateReadyEventHandler signal");
+            EmitSignal(nameof(GameStateReadyEventHandler));
+        }
+    }
 }

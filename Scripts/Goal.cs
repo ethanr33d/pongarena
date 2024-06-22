@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.Principal;
 
 public partial class Goal : Node2D
 {
@@ -30,13 +31,9 @@ public partial class Goal : Node2D
 			{
 				  // Access the GameState autoloaded singleton
 				GameState gameState = GetNode<GameState>("../GameState");
+				gameState.GoalScored(goalNumber);
 				
-		
 				
-				// Assuming you want to also increase the score
-				
-				await ToSignal(GetTree().CreateTimer(1.5), "timeout");
-				ball.NewBall();
 			}
 			
 		}
