@@ -6,6 +6,7 @@ public partial class HUD : CanvasLayer
     
 
     private HBoxContainer player1Hearts;
+	
     private HBoxContainer player2Hearts;
 	//private GameState gameState;
 
@@ -74,7 +75,7 @@ public partial class HUD : CanvasLayer
 			UpdateHeart(true, i, i < playerLives);
 		}
 
-		// Adjust CPU hearts
+		// Adjust p2 hearts
 		for (int i = 0; i < player2Hearts.GetChildCount(); i++)
 		{
 			UpdateHeart(false, i, i < cpuLives);
