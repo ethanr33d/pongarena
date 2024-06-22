@@ -28,6 +28,13 @@ public partial class Goal : Node2D
 			var ball = GetNode<Ball>("../Ball"); //maybe we can declare this earlier?
 			if (ball != null)
 			{
+				  // Access the GameState autoloaded singleton
+				GameState gameState = GetNode<GameState>("../GameState");
+				
+		
+				
+				// Assuming you want to also increase the score
+				
 				await ToSignal(GetTree().CreateTimer(1.5), "timeout");
 				ball.NewBall();
 			}
