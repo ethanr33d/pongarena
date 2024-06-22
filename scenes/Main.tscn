@@ -48,6 +48,7 @@ offset_bottom = 324.0
 grow_vertical = 2
 
 [node name="Ball" parent="." instance=ExtResource("1_h0exj")]
+position = Vector2(579, 340)
 
 [node name="PlayerMarker" type="Marker2D" parent="."]
 position = Vector2(50, 324)
@@ -74,12 +75,10 @@ one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("5_8mluk")]
 
-[node name="Goal" parent="." instance=ExtResource("5_xagyb")]
-position = Vector2(-32, 324)
-collision_layer = 2
+[node name="Goal1" parent="." instance=ExtResource("5_xagyb")]
+position = Vector2(-30, 324)
 
 [node name="Goal2" parent="." instance=ExtResource("5_xagyb")]
 position = Vector2(1183, 324)
-collision_layer = 2
 
 [connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]
