@@ -79,7 +79,7 @@ public partial class GameState : Node
     }
     private void RefreshGameState(){
         CheckRoundOver();
-        PrintGameState();
+       // PrintGameState();
         hud.RefreshHUD();
         if(!roundOver) ResetBall(); //reset ball if round is not over
         else Reset(); //reset game state  
