@@ -5,15 +5,14 @@ using System;
 public partial class GameState : Node
 {
 
-   
     [Export]
 	public int _playerLives = 3; // Default value, can be changed in the Godot editor
-    [Signal]
-    public delegate void GameStateReadyEventHandler();
-	
+    public int _numPlayers = 2; //eh, who knows what could happen, simpler to refer in an  array
+   
 
     private Player playerOne;
     private Player playerTwo;
+    private Player[] players;
     private HUD hud;
     private bool gameStateIsReady = false;
     public bool roundOver { get; private set; }
@@ -21,21 +20,21 @@ public partial class GameState : Node
     public struct Player
     {
         public string Name;
-        public int Lives;
+        public int currentLives;
+        public int maxLives;
 
         public Player(string name, int lives)
         {
             Name = name;
-            Lives = lives;
+            currentLives = lives;
+            maxLives = lives;
         }
     }
     
     public override void _Ready()
     {
       setPlayerLives();
-      gameStateIsReady = true;
-      CheckAndEmitReady();
-      GD.Print($"Player One Lives: {playerOne.Lives}, Player Two Lives: {playerTwo.Lives}");
+
       hud = GetNode<HUD>("../HUD");
       hud.InitializeHUD();
     }
@@ -49,14 +48,16 @@ public partial class GameState : Node
     /// </remarks>
     public void GoalScored(int goalNumber)
     {
-        if(goalNumber == 1)AdjustLives(2, 1, false);
-        else AdjustLives(1, 1, false);
+        if(goalNumber == 1)AdjustLives(1, 1, false);
+        else AdjustLives(2, 1, false);
         
     }
 
     public void setPlayerLives(){
-        playerOne.Lives = _playerLives;
-        playerTwo.Lives = _playerLives;
+        playerOne.currentLives = _playerLives;
+        playerOne.maxLives = _playerLives;
+        playerTwo.currentLives = _playerLives;
+        playerTwo.maxLives = _playerLives;
     }
     /// <summary>
     /// Adjusts the number of lives for a specified player.
@@ -70,9 +71,9 @@ public partial class GameState : Node
     /// </remarks>
     public void AdjustLives(int playerNumber, int numLives, bool increase){
     if(playerNumber == 1){
-        playerOne.Lives += increase ? numLives : -numLives;
+        playerOne.currentLives += increase ? numLives : -numLives;
     }else{
-        playerTwo.Lives += increase ? numLives : -numLives;
+        playerTwo.currentLives += increase ? numLives : -numLives;
     }
     RefreshGameState();
     }
@@ -90,13 +91,16 @@ public partial class GameState : Node
         ball.NewBall();
     }
 
-    public int GetPlayerLives(int playerNumber){
-        if(playerNumber == 1) return playerOne.Lives;
-        else return playerTwo.Lives;
+    public int GetPlayerCurrentLives(int playerNumber){
+        if(playerNumber == 1) return playerOne.currentLives;
+        else return playerTwo.currentLives;
+    }
+    public int GetPlayerMaxLives(){
+        return _playerLives; //this is the passed lives from godot menu, max lives
     }
    private void CheckRoundOver()
    {
-        if(playerOne.Lives == 0 || playerTwo.Lives == 0) roundOver = true;
+        if(playerOne.currentLives == 0 || playerTwo.currentLives == 0) roundOver = true;
         else roundOver = false;
    }
 
@@ -104,21 +108,14 @@ public partial class GameState : Node
     private void Reset()
     {
         setPlayerLives();
+        hud.RefreshHUD();
         ResetBall();
     }
     private void PrintGameState()
     {
-        Console.WriteLine($"Player One Lives: {playerOne.Lives}");
-        Console.WriteLine($"Player Two Lives: {playerTwo.Lives}");
+        Console.WriteLine($"Player One currentLives: {playerOne.currentLives}");
+        Console.WriteLine($"Player Two currentLives: {playerTwo.currentLives}");
         Console.WriteLine($"Round Status: {(roundOver ? "Over" : "Ongoing")}");
     }
-    public void CheckAndEmitReady()
-    {
-        // Your logic to check if GameState is ready
-        if (gameStateIsReady) // IsReady() needs to be implemented based on your game's logic
-        {
-            GD.Print("Emitting GameStateReadyEventHandler signal");
-            EmitSignal(nameof(GameStateReadyEventHandler));
-        }
-    }
+   
 }

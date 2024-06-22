@@ -45,12 +45,6 @@ layout_mode = 2
 [node name="PlayerHearts" type="HBoxContainer" parent="PlayerMargin/PlayerCenter"]
 layout_mode = 2
 
-[node name="jk" type="TextureRect" parent="PlayerMargin/PlayerCenter/PlayerHearts"]
-visible = false
-layout_mode = 2
-expand_mode = 5
-stretch_mode = 3
-
 [node name="CPUMargin" type="MarginContainer" parent="."]
 anchors_preset = 11
 anchor_left = 1.0
