@@ -12,7 +12,7 @@ public partial class GameState : Node
 
     private Player playerOne;
     private Player playerTwo;
-    private Player[] players;
+  
     private HUD hud;
     private bool gameStateIsReady = false;
     public bool roundOver { get; private set; }
@@ -33,7 +33,7 @@ public partial class GameState : Node
     
     public override void _Ready()
     {
-      setPlayerLives();
+      SetPlayerLives();
 
       hud = GetNode<HUD>("../HUD");
       hud.InitializeHUD();
@@ -53,7 +53,7 @@ public partial class GameState : Node
         
     }
 
-    public void setPlayerLives(){
+    public void SetPlayerLives(){
         playerOne.currentLives = _playerLives;
         playerOne.maxLives = _playerLives;
         playerTwo.currentLives = _playerLives;
@@ -107,7 +107,7 @@ public partial class GameState : Node
     //reset game state
     private void Reset()
     {
-        setPlayerLives();
+        SetPlayerLives();
         hud.RefreshHUD();
         ResetBall();
     }
