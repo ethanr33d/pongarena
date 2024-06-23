@@ -3,43 +3,46 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
-    [Export] public int playerLives = 3;
-    [Export] public int cpuLives = 3;
+    
 
-    private HBoxContainer playerHearts;
-    private HBoxContainer cpuHearts;
+    private HBoxContainer player1Hearts;
+	
+    private HBoxContainer player2Hearts;
+	
+	private int _maxLives;
 
 	private Timer testTimer;
 
     public override void _Ready()
     {
-        playerHearts = GetNode<HBoxContainer>("PlayerMargin/PlayerCenter/PlayerHearts");
-        cpuHearts = GetNode<HBoxContainer>("CPUMargin/CPUCenter/CPUHearts");
-		
-		FillHearts(playerHearts, playerLives);
-		FillHearts(cpuHearts, cpuLives);
+        player1Hearts = GetNode<HBoxContainer>("PlayerMargin/PlayerCenter/PlayerHearts");
+        player2Hearts = GetNode<HBoxContainer>("CPUMargin/CPUCenter/CPUHearts");
     }
-	/// <summary>
-	/// Fills the specified container with the specified number of full hearts.
-	/// </summary>
-	/// <param name="container">The HBoxContainer to fill.</param>
-	/// <param name="lives">The number of full hearts to add to the container.</param>
-	private void FillHearts(HBoxContainer container, int lives)
+
+	public void InitializeHUD()
 	{
-		for (int i = 0; i < lives; i++)
-		{
-			var heart = new TextureRect();
-			heart.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered; //needed?
-			heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_full.png");
-			container.AddChild(heart);
-		}
+		//get information for lives
+		GameState gameState = GetNode<GameState>("../GameState");
+		_maxLives = gameState.GetPlayerMaxLives();
+		HandleHearts();
+	}
+	public void RefreshHUD(){
+		HandleHearts();
+	}
+	private void HandleHearts(){
+		GameState gameState = GetNode<GameState>("../GameState");
+		ClearHearts(player1Hearts);
+		ClearHearts(player2Hearts);
+		FillHearts(player1Hearts,1);
+		FillHearts(player2Hearts,2);
+
 	}
 	/// <summary>
 	/// Removes all children from the specified container and fills it with full hearts.
 	/// </summary>
 	/// <param name="container">The HBoxContainer to reset.</param>
 	/// <param name="lives">The number of full hearts to add to the container.</param>
-	public void ResetHearts(HBoxContainer container, int lives)
+	public void ClearHearts(HBoxContainer container)
 	{
 		// Remove all existing hearts
 		foreach (var child in container.GetChildren())
@@ -47,20 +50,31 @@ public partial class HUD : CanvasLayer
 			container.RemoveChild(child as Node);
 			(child as Node).QueueFree();
 		}
-
-		// Fill with full hearts
-		FillHearts(container, lives);
 	}
 	/// <summary>
-	/// Updates the texture of the heart at the specified index in the specified container.
+	/// Fills the specified container with the specified number of full hearts.
 	/// </summary>
-	/// <param name="isPlayer">If true, updates a heart in the player's container; otherwise, updates a heart in the CPU's container.</param>
-	/// <param name="index">The index of the heart to update.</param>
-	/// <param name="isFull">If true, sets the heart to full; otherwise, sets the heart to empty.</param>
-    public void UpdateHeart(bool isPlayer, int index, bool isFull)
-    {
-        var heart = (isPlayer ? playerHearts : cpuHearts).GetChild<TextureRect>(index);
-        heart.Texture = (Texture2D)GD.Load(isFull ? "res://assets/HUD/heart_full.png" : "res://assets/HUD/heart_empty.png");
-    }
+	/// <param name="container">The HBoxContainer to fill.</param>
+	/// <param name="lives">The number of full hearts to add to the container.</param>
+	private void FillHearts(HBoxContainer container,  int playerNumber)
+	{
+		GameState gameState = GetNode<GameState>("../GameState");
+		int currentLives = gameState.GetPlayerCurrentLives(playerNumber); // Assuming gameState is accessible and has getPlayerCurrentLives method
 
+		for (int i = 0; i < _maxLives; i++)
+		{
+			var heart = new TextureRect();
+			heart.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+
+			// Determine if the heart should be full or empty
+			if (i < currentLives){
+				heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_full.png"); // Full heart
+			}else{
+				heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_empty.png"); // Empty heart
+			}
+
+			container.AddChild(heart);
+		}
+	}
+	
 }

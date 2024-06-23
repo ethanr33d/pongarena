@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqqku1fgxede1"]
+[gd_scene load_steps=9 format=3 uid="uid://cqqku1fgxede1"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
 [ext_resource type="PackedScene" uid="uid://bok8uujggee1j" path="res://scenes/Ball.tscn" id="1_h0exj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b17pyrykphydw" path="res://scenes/Player.tscn" id="4_r43cb"]
 [ext_resource type="PackedScene" uid="uid://ch7wkpqgt6kvl" path="res://scenes/hud.tscn" id="5_8mluk"]
 [ext_resource type="PackedScene" uid="uid://c3djkg00ftfmg" path="res://scenes/Goal.tscn" id="5_xagyb"]
+[ext_resource type="PackedScene" uid="uid://bg5s3yli1mxug" path="res://scenes/game_state.tscn" id="8_tskjh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_f0of0")
@@ -80,5 +81,7 @@ position = Vector2(-30, 324)
 
 [node name="Goal2" parent="." instance=ExtResource("5_xagyb")]
 position = Vector2(1183, 324)
+
+[node name="GameState" parent="." instance=ExtResource("8_tskjh")]
 
 [connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]

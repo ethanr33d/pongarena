@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class Goal : Node2D
 {
 	public int goalNumber{get; set;}
@@ -28,8 +29,11 @@ public partial class Goal : Node2D
 			var ball = GetNode<Ball>("../Ball"); //maybe we can declare this earlier?
 			if (ball != null)
 			{
-				await ToSignal(GetTree().CreateTimer(1.5), "timeout");
-				ball.NewBall();
+				  // Access the GameState autoloaded singleton
+				GameState gameState = GetNode<GameState>("../GameState");
+				gameState.GoalScored(goalNumber);
+				
+				
 			}
 			
 		}
