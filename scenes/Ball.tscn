@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bok8uujggee1j"]
+
+[ext_resource type="Script" path="res://Scripts/Ball.cs" id="1_1iuyw"]
+[ext_resource type="Texture2D" uid="uid://b2hfh4vcvgdi" path="res://assets/ball.png" id="2_7fa3d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eeik4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7fa3d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6r6m"]
+size = Vector2(10, 10)
+
+[node name="Ball" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_1iuyw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eeik4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f6r6m")

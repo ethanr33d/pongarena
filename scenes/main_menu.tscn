@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://1cnxqdifs8kt"]
+
+[ext_resource type="FontFile" uid="uid://cwd1tkm36irny" path="res://assets/pixel_font.ttf" id="1_3mot8"]
+[ext_resource type="Script" path="res://scenes/MainMenu.cs" id="1_xhplw"]
+
+[sub_resource type="Theme" id="Theme_n8rev"]
+default_font = ExtResource("1_3mot8")
+default_font_size = 56
+
+[sub_resource type="Theme" id="Theme_27imv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0owb3"]
+
+[sub_resource type="Theme" id="Theme_scqov"]
+Button/styles/normal = SubResource("StyleBoxEmpty_0owb3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gfm7"]
+
+[sub_resource type="Theme" id="Theme_bpf5w"]
+Button/styles/normal = SubResource("StyleBoxEmpty_2gfm7")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4ye6"]
+
+[sub_resource type="Theme" id="Theme_7d1f1"]
+Button/styles/normal = SubResource("StyleBoxEmpty_i4ye6")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhplw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0470588, 0, 0.12549, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_n8rev")
+text = "Pong Arena"
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_27imv")
+theme_type_variation = &"FlatMenuButton"
+
+[node name="SinglePlayerButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuButton"]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 476.0
+offset_bottom = 194.0
+theme = SubResource("Theme_scqov")
+theme_override_fonts/font = ExtResource("1_3mot8")
+theme_override_font_sizes/font_size = 36
+text = "Single Player"
+
+[node name="MultiPlayerButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuButton"]
+layout_mode = 0
+offset_top = 217.0
+offset_right = 440.0
+offset_bottom = 261.0
+theme = SubResource("Theme_bpf5w")
+theme_override_fonts/font = ExtResource("1_3mot8")
+theme_override_font_sizes/font_size = 36
+text = "Multi-Player"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuButton"]
+layout_mode = 0
+offset_top = 281.0
+offset_right = 260.0
+offset_bottom = 325.0
+theme = SubResource("Theme_7d1f1")
+theme_override_fonts/font = ExtResource("1_3mot8")
+theme_override_font_sizes/font_size = 36
+text = "Options
+"
+
+[node name="Version" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -64.0
+offset_right = 280.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_3mot8")
+text = "ver 0.0.1
+
+EC2"
+
+[node name="Placeholder" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Placeholder"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Animation Will Play Here"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuButton/SinglePlayerButton" to="." method="OnSinglePlayerButtonPressed"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqqku1fgxede1"]
+
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_f0of0"]
+[ext_resource type="PackedScene" uid="uid://bok8uujggee1j" path="res://scenes/Ball.tscn" id="1_h0exj"]
+[ext_resource type="PackedScene" uid="uid://cqhooyua0f4jh" path="res://scenes/border.tscn" id="3_2gky0"]
+[ext_resource type="PackedScene" uid="uid://n2y18iugwieu" path="res://scenes/CPU.tscn" id="3_3b535"]
+[ext_resource type="PackedScene" uid="uid://b17pyrykphydw" path="res://scenes/Player.tscn" id="4_r43cb"]
+[ext_resource type="PackedScene" uid="uid://ch7wkpqgt6kvl" path="res://scenes/hud.tscn" id="5_8mluk"]
+[ext_resource type="PackedScene" uid="uid://c3djkg00ftfmg" path="res://scenes/Goal.tscn" id="5_xagyb"]
+[ext_resource type="PackedScene" uid="uid://bg5s3yli1mxug" path="res://scenes/game_state.tscn" id="8_tskjh"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_f0of0")
+
+[node name="Field" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="Field"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0509804, 0, 0.129412, 1)
+
+[node name="Net" type="ColorRect" parent="Field"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 576.0
+offset_top = -324.0
+offset_right = 586.0
+offset_bottom = 324.0
+grow_vertical = 2
+
+[node name="Ball" parent="." instance=ExtResource("1_h0exj")]
+position = Vector2(579, 340)
+
+[node name="PlayerMarker" type="Marker2D" parent="."]
+position = Vector2(50, 324)
+
+[node name="CPUMarker" type="Marker2D" parent="."]
+position = Vector2(1082, 324)
+
+[node name="BallMarker" type="Marker2D" parent="."]
+position = Vector2(581, 323)
+
+[node name="TopBorder" parent="." instance=ExtResource("3_2gky0")]
+position = Vector2(0, -60)
+
+[node name="BottomBorder" parent="." instance=ExtResource("3_2gky0")]
+position = Vector2(0, 648)
+
+[node name="CPU" parent="." instance=ExtResource("3_3b535")]
+position = Vector2(-3, 323)
+
+[node name="BallTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource("4_r43cb")]
+
+[node name="HUD" parent="." instance=ExtResource("5_8mluk")]
+
+[node name="Goal1" parent="." instance=ExtResource("5_xagyb")]
+position = Vector2(-30, 324)
+
+[node name="Goal2" parent="." instance=ExtResource("5_xagyb")]
+position = Vector2(1183, 324)
+
+[node name="GameState" parent="." instance=ExtResource("8_tskjh")]
+
+[connection signal="timeout" from="BallTimer" to="." method="OnBallTimerTimeout"]
