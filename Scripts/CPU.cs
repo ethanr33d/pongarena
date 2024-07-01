@@ -21,23 +21,36 @@ public partial class CPU : CharacterBody2D
 		pHeight = GetNode<ColorRect>("ColorRect").Size.Y;
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!active) return;
  
         ballPos = GetNode<CharacterBody2D>("../Ball").Position.Y;
 		ballDist = ballPos - Position.Y;
 		float moveBy = PADDLE_SPEED * (float)delta;
+		Vector2 motion = new Vector2();
 
 		if (ballDist < Math.Abs(moveBy))
 		{
-			Position = new Vector2(Position.X, ballPos);
+			motion.Y = ballDist;
 		} else
 		{
-			Position = new Vector2(Position.X, Position.Y + moveBy * Math.Sign(ballDist));
+			motion.Y = moveBy * Math.Sign(ballDist);
 		}
 
-		Position = new Vector2(Position.X, Math.Clamp(Position.Y, pHeight / 2, winHeight - pHeight / 2));
+		motion = new Vector2(0, Math.Clamp(Position.Y + motion.Y, pHeight / 2, winHeight - pHeight / 2) - Position.Y);
+
+		var collision = MoveAndCollide(motion);
+
+		if (collision != null)
+		{
+			GodotObject collider = collision.GetCollider();
+
+			if (collider is Ball ball)
+			{
+                ball.dir = ball.NewDirection(this, -collision.GetNormal()); // flip normal for bounce since it is relative to player here
+            }
+		}
 	}
 
 	public float GetPHeight()

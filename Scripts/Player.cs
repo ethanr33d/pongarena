@@ -42,7 +42,7 @@ public partial class Player : CharacterBody2D
 
 			if (collider is Ball ball)
 			{
-				ball.dir = ball.NewDirection(this, -collision.GetNormal());
+				ball.dir = ball.NewDirection(this, -collision.GetNormal()); // flip normal for bounce since it is relative to player here
 			}
 		}
 			
