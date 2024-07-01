@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CPU : StaticBody2D
+public partial class CPU : CharacterBody2D
 {
 	public float PADDLE_SPEED = 400f;
 

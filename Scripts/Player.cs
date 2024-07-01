@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices;
 
-public partial class Player : StaticBody2D
+public partial class Player : CharacterBody2D
 {
 	
 	public float winHeight; // GetViewportRect().Size.Y; wasnt working with integer... idk why
@@ -26,15 +27,25 @@ public partial class Player : StaticBody2D
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		    // Move up and down based on input.
-			float input = Input.GetActionStrength(_down) - Input.GetActionStrength(_up);
-			input += Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
-			Vector2 position = Position; // Required so that we can modify position.y.
-			position += new Vector2(0, input * paddleSpeed * (float)delta);
-			position.Y = Mathf.Clamp(position.Y, pHeight/2, winHeight - pHeight / 2);
-			Position = position;
+		float input = Input.GetActionStrength(_down) - Input.GetActionStrength(_up);
+		input += Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
+
+		Vector2 movementVec = new Vector2(0, input * paddleSpeed * (float)delta);
+		var collision = MoveAndCollide(movementVec);
+
+		if (collision != null)
+		{
+			GodotObject collider = collision.GetCollider();
+
+			if (collider is Ball ball)
+			{
+				ball.dir = ball.NewDirection(this, -collision.GetNormal());
+			}
+		}
+			
 
 	}
 }
