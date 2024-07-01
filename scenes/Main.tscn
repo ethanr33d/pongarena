@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bok8uujggee1j" path="res://scenes/Ball.tscn" id="1_h0exj"]
 [ext_resource type="PackedScene" uid="uid://cqhooyua0f4jh" path="res://scenes/border.tscn" id="3_2gky0"]
 [ext_resource type="PackedScene" uid="uid://n2y18iugwieu" path="res://scenes/CPU.tscn" id="3_3b535"]
-[ext_resource type="PackedScene" uid="uid://b17pyrykphydw" path="res://scenes/Player.tscn" id="4_r43cb"]
+[ext_resource type="PackedScene" uid="uid://cl1yq8undou71" path="res://scenes/Player.tscn" id="4_r43cb"]
 [ext_resource type="PackedScene" uid="uid://ch7wkpqgt6kvl" path="res://scenes/hud.tscn" id="5_8mluk"]
 [ext_resource type="PackedScene" uid="uid://c3djkg00ftfmg" path="res://scenes/Goal.tscn" id="5_xagyb"]
 [ext_resource type="PackedScene" uid="uid://bg5s3yli1mxug" path="res://scenes/game_state.tscn" id="8_tskjh"]
