@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b17pyrykphydw"]
+[gd_scene load_steps=3 format=3 uid="uid://cl1yq8undou71"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_hxyj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lg12x"]
 size = Vector2(20, 120)
 
-[node name="Player" type="StaticBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hxyj2")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -9,8 +9,6 @@ public partial class Ball : CharacterBody2D
 	public float speed;
 	public Vector2 dir;
 	public const float MaxYVector = 0.6f;
-	public Player player;
-	public CPU cpu;
 
 	public float pHeight;
 
@@ -18,13 +16,7 @@ public partial class Ball : CharacterBody2D
 	{
 		win_size = GetViewportRect().Size;
 		GD.Randomize();
-		NewBall();
-		player = GetNode<Player>("../Player");
-		cpu = GetNode<CPU>("../CPU");
-		
-		
-		
-		
+		NewBall();		
 	}
 
 	public void NewBall()
@@ -62,24 +54,10 @@ public partial class Ball : CharacterBody2D
 		{
 			collider = collision.GetCollider();
 			
-				// if ball hits paddle
-			if (collider is StaticBody2D body) { 
-				
-
-				if (collider == player)
+			if (collider is PhysicsBody2D body) {
+				if (collider is Paddle paddle)
 				{
-					GD.Print("Player hit!");
-					pHeight = player.pHeight;
-					speed += Accel;
-					dir = NewDirection(body);
-
-				}
-				else if (collider == cpu)
-				{
-					GD.Print("CPU hit");
-					pHeight = cpu.pHeight;
-					speed += Accel;
-					dir = NewDirection(body);
+					HandlePaddleCollision(paddle, collision.GetNormal());
 				}
 				else
 				{
@@ -92,31 +70,25 @@ public partial class Ball : CharacterBody2D
 		}
 	}
 
-	public Vector2 NewDirection(StaticBody2D body)
+	public void HandlePaddleCollision(Paddle paddle, Vector2 normal)
 	{
 		float distance;
 		Vector2 pad = new Vector2();
 		Vector2 ball = new Vector2();
 
 		ball.Y = Position.Y;
-		pad.Y = body.Position.Y;
+		pad.Y = paddle.Position.Y;
 		distance = ball.Y - pad.Y;
 
 		Vector2 newDirection = new Vector2();
 
-		if(dir.X > 0)
-		{
-			newDirection.X = -1;
-		}
-		else
-		{
-			newDirection.X = 1;
-		}
+		newDirection.X = dir.Bounce(normal).X;
 
-		newDirection.Y = (distance / (pHeight / 2)) * MaxYVector;
+		newDirection.Y = (distance / (paddle.pHeight / 2)) * MaxYVector;
 
-		return newDirection.Normalized();
-	}
+		dir = newDirection.Normalized();
+        speed += Accel;
+    }
 
 	public void Start()
 	{
