@@ -1,6 +1,8 @@
 # Pong Arena
 
 Pong Area is a reimagining of the classic Pong game, with new abilities and strategic gameplay elements. The final release will will have online play.
+
+
 ![alt text](pong.gif)
 
 ## Key Features
