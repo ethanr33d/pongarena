@@ -61,20 +61,17 @@ public partial class HUD : CanvasLayer
 		GameState gameState = GetNode<GameState>("../GameState");
 		int currentLives = gameState.GetPlayerCurrentLives(playerNumber); // Assuming gameState is accessible and has getPlayerCurrentLives method
 
-		for (int i = 0; i < _maxLives; i++)
+		for (int i = 0; i < currentLives; i++)
 		{
 			var heart = new TextureRect();
 			heart.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
 
-			// Determine if the heart should be full or empty
-			if (i < currentLives){
-				heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_full.png"); // Full heart
-			}else{
-				heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_empty.png"); // Empty heart
-			}
-
+			heart.Texture = (Texture2D)GD.Load("res://assets/HUD/heart_full.png"); // Full heart
+			
 			container.AddChild(heart);
 		}
 	}
 	
+
+
 }
