@@ -1,43 +1,30 @@
 using Godot;
 using System;
 
-public partial class CPU : StaticBody2D
-{
-	public float PADDLE_SPEED = 400f;
-
-	private float winHeight;
-	public float pHeight;
-	private float ballPos;
-	private float ballDist;
-	private bool active = false;
-	
-	public void Start()
-	{
-		active = true;
-	}
-	public override void _Ready()
-	{
-		winHeight = GetViewportRect().Size.Y;
-		pHeight = GetNode<ColorRect>("ColorRect").Size.Y;
-	}
-
-	public override void _Process(double delta)
+public partial class CPU : Paddle
+{	
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!active) return;
  
-        ballPos = GetNode<CharacterBody2D>("../Ball").Position.Y;
-		ballDist = ballPos - Position.Y;
-		float moveBy = PADDLE_SPEED * (float)delta;
+        float ballPos = GetNode<CharacterBody2D>("../Ball").Position.Y;
+		float ballDist = ballPos - Position.Y;
+		float moveBy = paddleSpeed * (float)delta;
+		Vector2 motion = new Vector2();
 
+		// compute movement by CPU
 		if (ballDist < Math.Abs(moveBy))
 		{
-			Position = new Vector2(Position.X, ballPos);
+			motion.Y = ballDist;
 		} else
 		{
-			Position = new Vector2(Position.X, Position.Y + moveBy * Math.Sign(ballDist));
+			motion.Y = moveBy * Math.Sign(ballDist);
 		}
 
-		Position = new Vector2(Position.X, Math.Clamp(Position.Y, pHeight / 2, winHeight - pHeight / 2));
+		//  clamp to prevent out of bounds movement
+		motion = new Vector2(0, Math.Clamp(Position.Y + motion.Y, pHeight / 2, winHeight - pHeight / 2) - Position.Y);
+
+		MovePaddleAndCollide(motion);
 	}
 
 	public float GetPHeight()
